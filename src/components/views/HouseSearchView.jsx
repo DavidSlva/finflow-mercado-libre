@@ -23,8 +23,6 @@ const HouseSearchView = (props) => {
     amount: null,
   });
 
-  console.log(countries, states, houses, cities);
-
   const countryOptions = useMemo(() => {
     return transformDropdown(countries, "id", "id", "name");
   }, [countries]);
@@ -46,11 +44,19 @@ const HouseSearchView = (props) => {
   const buscarCasas = () => {
     houses.get(dataValues);
   };
+  // useEffect(() => {
+
+  //   console.log(dataValues);
+  // }, [dataValues]);
   const onChangeForm = (name, value) => {
     setDataValues({ ...dataValues, [name]: value });
-    if (name === COUNTRY) states.get();
-    if (name === CITY) houses.get();
-    if (name === STATE) cities.get();
+    if (name === COUNTRY) states.get(value);
+    // if (name === CITY)
+    //   houses.get({
+    //     ...dataValues,
+    //     [name]: value,
+    //   });
+    if (name === STATE) cities.get(value);
   };
 
   return (
@@ -68,14 +74,17 @@ const HouseSearchView = (props) => {
           <Loading />
         )}
       </Segment>
-
-      <div style={{ marginTop: "20px" }}>
-        <HousesList
-          houses={houses.data}
-          handleChoose={handleChoose}
-          selectedIds={selectedIds}
-        />
-      </div>
+      {!houses?.isLoading ? (
+        <div style={{ marginTop: "20px" }}>
+          <HousesList
+            houses={houses.data}
+            handleChoose={handleChoose}
+            selectedIds={selectedIds}
+          />
+        </div>
+      ) : (
+        <Loading />
+      )}
     </div>
   );
 };

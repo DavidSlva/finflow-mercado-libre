@@ -46,13 +46,14 @@ const HouseSearch = () => {
     }
   };
 
-  const getHouses = async (state, city, maxPrice) => {
+  const getHouses = async ({ city, amount }) => {
     setIsLoadingHouses(true);
     try {
-      let url = `http://127.0.0.1:8000/api/ml/houses/${state}/${city}/${
-        maxPrice || 99999999999
+      let url = `http://127.0.0.1:8000/api/ml/houses/${city}/${
+        amount || 99999999999
       }/`;
       const response = await getToApi(url);
+      console.log(response);
       let _houses = response.results;
       _houses = _houses?.map((item) => {
         const thumbnail = item.thumbnail;

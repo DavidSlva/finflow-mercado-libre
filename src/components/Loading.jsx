@@ -14,8 +14,8 @@ const Loading = () => {
         r="40"
         fill="none"
         stroke="#000"
-        stroke-width="8"
-        stroke-dasharray="60 140"
+        strokeWidth="8"
+        strokeDasharray="60 140"
       >
         <animateTransform
           attributeName="transform"

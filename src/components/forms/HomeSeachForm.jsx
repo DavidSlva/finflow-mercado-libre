@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Button, Dropdown, Form } from "semantic-ui-react";
+import { AMOUNT, CITY, COUNTRY, STATE } from "../../assets/strings";
 
 const HomeSeachForm = ({
   countryOptions,
@@ -26,34 +27,34 @@ const HomeSeachForm = ({
             fluid
             selection
             options={countryOptions || []}
-            onChange={(e, { value }) => onChangeForm("country", value)}
+            onChange={(e, { value }) => onChangeForm(COUNTRY, value)}
           />
         </Form.Field>
         <Form.Field>
-          <label>State</label>
+          <label>Región</label>
           <Dropdown
-            placeholder="Select State"
+            placeholder="Selecciona región"
             fluid
             selection
             options={stateOptions || []}
-            onChange={(e, { value }) => onChangeForm("state", value)}
+            onChange={(e, { value }) => onChangeForm(STATE, value)}
           />
         </Form.Field>
         <Form.Field>
           <label>Ciudad</label>
           <Dropdown
-            placeholder="Select City"
+            placeholder="Selecciona Ciudad"
             fluid
             selection
             options={citiesOptions || []}
-            onChange={(e, { value }) => onChangeForm("city", value)}
+            onChange={(e, { value }) => onChangeForm(CITY, value)}
           />
         </Form.Field>
         <Form.Field>
           <label>Monto</label>
           <input
-            placeholder="Amount"
-            onChange={(e) => onChangeForm("amount", e?.target?.value)}
+            placeholder="Precio"
+            onChange={(e) => onChangeForm(AMOUNT, e?.target?.value)}
           />
         </Form.Field>
       </Form.Group>
